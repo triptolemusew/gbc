@@ -1,7 +1,12 @@
-use std::env;
+extern crate sdl2;
+
+#[macro_use]
+extern crate lazy_static;
 
 use rom::Rom;
+use std::env;
 
+mod cpu;
 mod rom;
 
 fn main() {
