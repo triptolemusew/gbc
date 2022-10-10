@@ -6,7 +6,10 @@ extern crate lazy_static;
 use rom::Rom;
 use std::env;
 
+mod bus;
+mod constants;
 mod cpu;
+mod ppu;
 mod rom;
 
 fn main() {
