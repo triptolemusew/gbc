@@ -18,6 +18,14 @@ impl Bus {
         }
     }
 
+    pub fn read(&self, addr: u16) -> u8 {
+
+    }
+
+    pub fn write(&mut self, addr: u16, data: u8) {
+
+    }
+
     pub fn step(&mut self, cycles: usize) {
         self.ppu.step(cycles as u32);
     }

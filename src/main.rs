@@ -9,6 +9,7 @@ use std::env;
 mod bus;
 mod constants;
 mod cpu;
+mod emulator;
 mod ppu;
 mod rom;
 

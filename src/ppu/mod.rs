@@ -1,3 +1,6 @@
+use crate::constants::{SCREEN_HEIGHT, SCREEN_WIDTH};
+
+pub mod graphics;
 
 const CLOCK_SPEED: u32 = 4194304;
 const FRAME_RATE: u32 = 60;
@@ -106,7 +109,5 @@ impl Ppu {
         }
     }
 
-    pub fn step(&mut self, cycles: u32)  {
-
-    }
+    pub fn step(&mut self, cycles: u32) {}
 }
