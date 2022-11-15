@@ -50,6 +50,14 @@ impl Cpu {
         val
     }
 
+    fn get_word(&mut self, bus: &Bus) -> u16 {
+        let hi = bus.read(self.PC as u16);
+        let lo = bus.read(self.PC as u16);
+        self.PC = self.PC.wrapping_add(2);
+        
+        u16::from_be_bytes([lo, hi])
+    }
+
     pub fn step(&mut self, bus: &mut Bus) -> u32 {
         let op = self.get_byte(bus);
         let cycles = match op != 0xCB {
@@ -60,22 +68,30 @@ impl Cpu {
             }
         };
 
-        cycles
+        cycles.clone()
     }
 
-    fn execute_opcode(&mut self, op: u8, bus: &mut Bus) -> u32 {
+    fn execute_opcode(&mut self, op: u8, bus: &mut Bus) -> &u32 {
         let Opcode(addr, cycles, _) = OPCODES
             .get(op as usize)
             .expect(format!("Standard opcode is not recognized: {:#X}", op).as_str());
 
-        cycles.clone()
+        match addr.clone() {
+            _ => {}
+        }
+
+        cycles
     }
 
-    fn execute_extended_opcode(&mut self, op: u8, bus: &mut Bus) -> u32 {
+    fn execute_extended_opcode(&mut self, op: u8, bus: &mut Bus) -> &u32 {
         let ExtendedOpcode(addr, cycles, _) = EXTENDED_OPCODES
             .get(op as usize)
             .expect(format!("Extended opcode is not recognized: {:#X}", op).as_str());
 
-        cycles.clone()
+        match addr.clone() {
+            _ => {}
+        }
+
+        cycles
     }
 }
