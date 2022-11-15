@@ -18,4 +18,8 @@ fn main() {
     let file_name = args.get(1).unwrap();
 
     let rom = Rom::new(&file_name);
+
+    let mut emulator = Emulator::new(rom);
+
+    emulator.run();
 }
