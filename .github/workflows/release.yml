@@ -1,0 +1,39 @@
+name: Release binaries
+
+on:
+  release:
+    types:
+      - created
+  push:
+    tags:
+      - v[0-9]+.*
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: taiki-e/create-gh-release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+  upload-assets:
+    needs: create-release
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            features: systemd,io_uring
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: install_dependencies
+        run: |
+          sudo apt-get install libsdl2-dev libsdl2-2.0-0 -y
+      - uses: taiki-e/upload-rust-binary-action@v1
+        with:
+          tar: unix
+          zip: windows
+          bin: "sdl"
+          features: "sdl"
+          token: ${{ secrets.GITHUB_TOKEN }}
