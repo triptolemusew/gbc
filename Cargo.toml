@@ -1,9 +1,19 @@
 [package]
 name = "gbc"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2018"
 description = "Yet another GBC emulator"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "native"
+path = "src/main.rs"
+
+[features]
+sdl = ["sdl2"]
+
 [dependencies]
 lazy_static = {version = "1.4.0"}
-sdl2 = {version = "0.35.1"}
+sdl2 = {version = "0.35.1", optional = true}
