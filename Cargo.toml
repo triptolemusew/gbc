@@ -16,4 +16,4 @@ sdl = ["sdl2"]
 
 [dependencies]
 lazy_static = {version = "1.4.0"}
-sdl2 = {version = "0.35.1", optional = true}
+sdl2 = {version = "0.34.3", optional = true, default-features = false, features = ["unsafe_textures"]}

@@ -2,12 +2,12 @@ use std::fs::File;
 use std::io::Read;
 
 #[derive(Debug)]
-pub struct Rom {
+pub struct Cartridge {
     pub data: Vec<u8>,
 }
 
-impl Rom {
-    pub fn new(path: &str) -> Rom {
+impl Cartridge {
+    pub fn new(path: &str) -> Cartridge {
         let mut f = File::open(path).expect("No file found.");
         let metadata = std::fs::metadata(&path).expect("Unable to read file metadata.");
 
@@ -15,7 +15,7 @@ impl Rom {
 
         f.read_exact(&mut contents).expect("Buffer overflow");
 
-        Rom { data: contents }
+        Cartridge { data: contents }
     }
 
     pub fn length(&self) -> usize {

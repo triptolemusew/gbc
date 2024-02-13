@@ -1,6 +1,4 @@
-use crate::constants::{SCREEN_HEIGHT, SCREEN_WIDTH};
-
-pub mod graphics;
+use crate::{SCREEN_HEIGHT, SCREEN_WIDTH};
 
 const CLOCK_SPEED: u32 = 4194304;
 const FRAME_RATE: u32 = 60;
